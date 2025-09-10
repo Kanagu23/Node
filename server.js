@@ -58,19 +58,69 @@
 //   console.error('Error:', err.message);
 // });
 
-const fs = require("fs");
+// const fs = require("fs");
+// const http = require("http");
+
+// const server = http.createServer((req, res) => {
+//   if (req.url === "/video") {
+//     const stream = fs.createReadStream("video.mp4");
+//     res.writeHead(200, { "Content-Type": "video/mp4" });
+//     stream.pipe(res); // Efficient streaming
+//   } else {
+//     res.end("Hello");
+//   }
+// });
+
+// server.listen(3000, () => {
+//   console.log("Server running at http://localhost:3000");
+// });
+
+// const http = require("http");
+
+// const server = http.createServer((req, res) => {
+//   if (req.url === "/api/data") {
+//     res.writeHead(200, { "Content-Type": "application/json" });
+//     res.end(JSON.stringify({ message: "Hello from server" }));
+//   } else {
+//     res.writeHead(404);
+//     res.end("Not Found");
+//   }
+// });
+
+// server.listen(5000, () => {
+//   console.log("Server running at http://localhost:5000");
+// });
+
+// working-server.js
 const http = require("http");
 
 const server = http.createServer((req, res) => {
-  if (req.url === "/video") {
-    const stream = fs.createReadStream("video.mp4");
-    res.writeHead(200, { "Content-Type": "video/mp4" });
-    stream.pipe(res); // Efficient streaming
-  } else {
-    res.end("Hello");
+  if (req.url === "/api/data") {
+    // ✅ Add CORS headers
+    res.writeHead(200, {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",   // allow all origins
+      "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type",
+    });
+
+    res.end(JSON.stringify({ message: "Hello from server with CORS enabled 🚀" }));
+  } 
+  else if (req.method === "OPTIONS") {
+    // ✅ Handle preflight requests
+    res.writeHead(204, {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type",
+    });
+    res.end();
+  }
+  else {
+    res.writeHead(404);
+    res.end("Not Found");
   }
 });
 
-server.listen(3000, () => {
-  console.log("Server running at http://localhost:3000");
+server.listen(5000, () => {
+  console.log("Server running at http://localhost:5000");
 });
