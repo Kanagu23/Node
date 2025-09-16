@@ -1,0 +1,1 @@
+The fs module allows you to interact with the file system: reading, writing, updating, deleting files, working with directories, and using streams.
