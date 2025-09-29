@@ -10,11 +10,13 @@
 // myEmitter.emit('welcome','Parithi')
 
 
-const http =require('http')
+const { Transform } = require('stream');
 
-const server = http.createServer()
-server.on('request',(req,res)=>{
-    res.writeHead(200,{"content-type":"text/plain"})
-    res.end("Hello Parithi")
-})
-server.listen(3000)
+const upperCaseTransform = new Transform({
+  transform(chunk, encoding, callback) {
+    this.push(chunk.toString().toUpperCase());
+    callback();
+  }
+});
+
+process.stdin.pipe(upperCaseTransform).pipe(process.stdout);
