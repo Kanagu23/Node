@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/style.css')
+  body
+    header
+      h1= title
+      nav
+        a(href='/') Home |
+        a(href='/add') Add Task |
+        a(href='/test') test
+    main
+      block content

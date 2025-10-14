@@ -1,0 +1,7 @@
+extends layout
+
+block content
+  form(action='/add', method='POST')
+    label(for='task') Task:
+    input(type='text', name='task', id='task', required)
+    button(type='submit') Add Task

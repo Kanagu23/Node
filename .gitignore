@@ -1,3 +1,6 @@
 /node_modules
 /express/node_modules
+/express/todo-app/node_modules
+/express/package-lock.json
+/express/todo-app/package-lock.json
 package-lock.json
