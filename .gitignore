@@ -3,4 +3,6 @@
 /express/todo-app/node_modules
 /express/package-lock.json
 /express/todo-app/package-lock.json
+/express/todo-app/mongodb/package-lock.json
+/express/todo-app/mongodb/node_modules
 package-lock.json
