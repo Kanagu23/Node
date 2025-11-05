@@ -1,6 +1,14 @@
 extends layout
 
 block content
+    h4=message
     ul 
         each emp in employees
-            li=emp.name
+            li(class=`${emp._id}`)
+               span= emp.name 
+                a(href=`/delete?emp_id=${emp._id}`)  Delete
+    <form method="post" action="/add_field">
+    <input type="text" name="emp_name"/>
+    <input type="email" name="emp_email"/>
+    <input type="submit" value="Submit"/>
+    </form>
